@@ -14,3 +14,29 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('foo', function () {
+    return 'Hello World';
+});
+Route::get('user/profile', function () {
+    //
+    return 'user/profile';
+})->name('profile');
+
+Route::get('user/{id}/profile', function ($id) {
+    //
+    $url = route('profile', ['id' => 1]);
+    return 'url'.$url;
+})->name('profile');
+
+Route::get('user/{id}', function ($id) {
+    return 'User '.$id;
+});
+Route::domain('{account}.myapp.com')->group(function () {
+    Route::get('usera/{id}', function ($account, $id) {
+        //
+    });
+});
+
+
+Route::get('/test_param/{id}','TestSomethingController@testParam');
+
