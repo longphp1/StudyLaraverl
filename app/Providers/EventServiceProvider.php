@@ -15,10 +15,20 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
+        'App\Events\SomeEvent' => [
+            'App\Listeners\EventListener',
+        ],
+        'App\Events\PupUserchange'=>[
+            'App\Handlers\Events\UserManagerd'
+        ],
+        'App\Events\OrderShipped'=>[
+            'App\Listeners\SendShipmentNotification',
+        ],
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
     ];
+
 
     /**
      * Register any events for your application.
@@ -29,6 +39,12 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
+        Event::listen('shopping', function ($foo, $bar) {
+            //
+        });
+        Event::listen('event.*', function ($eventName, array $data) {
+            //
+        });
         //
     }
 }

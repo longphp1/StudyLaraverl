@@ -28,9 +28,8 @@ Route::get('user/{id}/profile', function ($id) {
     return 'url'.$url;
 })->name('profile');
 
-Route::get('user/{id}', function ($id) {
-    return 'User '.$id;
-});
+Route::get('user/{id}', 'UserController@show');
+
 Route::domain('{account}.myapp.com')->group(function () {
     Route::get('usera/{id}', function ($account, $id) {
         //
@@ -40,3 +39,6 @@ Route::domain('{account}.myapp.com')->group(function () {
 
 Route::get('/test_param/{id}','TestSomethingController@testParam');
 
+Route::get('/', function () {
+    return view('greeting', ['name' => 'James']);
+});
